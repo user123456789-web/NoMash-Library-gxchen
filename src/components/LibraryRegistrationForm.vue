@@ -11,7 +11,8 @@ const formData = ref({
   confirmPassword: '',
   isAustralian: false,
   reason: '',
-  gender: ''
+  gender: '',
+  suburb: 'Clayton'
 })
 
 const submittedCards = ref([])
@@ -39,7 +40,8 @@ const clearForm = () => {
     confirmPassword: '',
     isAustralian: false,
     reason: '',
-    gender: ''
+    gender: '',
+    suburb: 'Clayton'
   }
 }
 
@@ -215,6 +217,18 @@ const hasFriend = computed(
             <p v-else-if="hasFriend" class="text-success mb-0">Great to have a friend!</p>
             <small v-else class="text-muted">
               {{ reasonLength }} / {{ MIN_REASON_LENGTH }} (min)
+            </small>
+          </div>
+          <div class="mb-3">
+            <label for="suburb" class="form-label">Suburb</label>
+            <input
+              type="text"
+              class="form-control"
+              id="suburb"
+              v-bind:value="formData.suburb"
+            />
+            <small class="form-text text-muted">
+              Bound one-way (v-bind) — data source is not updated by user input.
             </small>
           </div>
           <div class="text-center">
