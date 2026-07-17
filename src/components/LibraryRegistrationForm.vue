@@ -1,7 +1,9 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
+
+const MIN_REASON_LENGTH = 10
 
 const formData = ref({
   username: '',
@@ -18,10 +20,12 @@ const submitForm = () => {
   validateName(true)
   validatePassword(true)
   validateConfirmPassword(true)
+  validateReason(true)
   if (
     !errors.value.username &&
     !errors.value.password &&
-    !errors.value.confirmPassword
+    !errors.value.confirmPassword &&
+    !errors.value.reason
   ) {
     submittedCards.value.push({ ...formData.value })
     clearForm()
@@ -92,6 +96,30 @@ const validateConfirmPassword = (blur) => {
     errors.value.confirmPassword = null
   }
 }
+
+const validateReason = (show) => {
+  const reason = formData.value.reason
+  if (!reason || reason.length === 0) {
+    errors.value.reason = 'Reason is required.'
+  } else if (reason.length < MIN_REASON_LENGTH) {
+    if (show) errors.value.reason = `Reason must be at least ${MIN_REASON_LENGTH} characters.`
+    else errors.value.reason = null
+  } else if (!/[A-Za-z]/.test(reason)) {
+    if (show) errors.value.reason = 'Reason must contain at least one letter.'
+    else errors.value.reason = null
+  } else {
+    errors.value.reason = null
+  }
+}
+
+const onReasonInput = () => validateReason(false)
+const onReasonBlur = () => validateReason(true)
+
+const reasonLength = computed(() => formData.value.reason.length)
+
+const hasFriend = computed(
+  () => /\bfriend\b/i.test(formData.value.reason) && !errors.value.reason
+)
 </script>
 
 <template>
@@ -180,7 +208,14 @@ const validateConfirmPassword = (blur) => {
               id="reason"
               rows="3"
               v-model="formData.reason"
+              @input="onReasonInput"
+              @blur="onReasonBlur"
             ></textarea>
+            <p v-if="errors.reason" class="text-danger mb-0">{{ errors.reason }}</p>
+            <p v-else-if="hasFriend" class="text-success mb-0">Great to have a friend!</p>
+            <small v-else class="text-muted">
+              {{ reasonLength }} / {{ MIN_REASON_LENGTH }} (min)
+            </small>
           </div>
           <div class="text-center">
             <button type="submit" class="btn btn-primary me-2">Submit</button>
