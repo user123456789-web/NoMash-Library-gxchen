@@ -1,12 +1,35 @@
+<script setup>
+import { isAuthenticated, currentUser, logout } from '../auth.js'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const onLogout = () => {
+  logout()
+  router.push('/login')
+}
+</script>
+
 <template>
   <div class="container">
     <header class="d-flex justify-content-center py-3">
-      <ul class="nav nav-pills">
+      <ul class="nav nav-pills align-items-center">
         <li class="nav-item">
           <router-link to="/" class="nav-link" active-class="active" exact-active-class="active">Home</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/about" class="nav-link" active-class="active">About</router-link>
+        </li>
+
+        <li v-if="!isAuthenticated" class="nav-item">
+          <router-link to="/login" class="nav-link">Login</router-link>
+        </li>
+
+        <li v-else class="nav-item d-flex align-items-center ms-2">
+          <span class="navbar-text me-2">{{ currentUser }}</span>
+          <button type="button" class="btn btn-sm btn-outline-danger" @click="onLogout">
+            Logout
+          </button>
         </li>
       </ul>
     </header>
