@@ -7,11 +7,13 @@ import App from './App.vue'
 
 import PrimeVue from 'primevue/config'
 import Aura from '@primevue/themes/aura'
+import router from './router'
 // import DataTable from 'primevue/datatable'
 // import Column from 'primevue/Column'
 
 const app = createApp(App)
 app.use(PrimeVue, { theme: { preset: Aura } })
+app.use(router)
 
 // app.component('DataTable', DataTable)
 // app.component('Column', Column)
