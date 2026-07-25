@@ -14,12 +14,12 @@ import router from './router'
 import { initializeApp } from 'firebase/app'
 
 const firebaseConfig = {
-  apiKey: "REPLACE_API_KEY",
-  authDomain: "REPLACE_AUTH_DOMAIN",
-  projectId: "REPLACE_PROJECT_ID",
-  storageBucket: "REPLACE_STORAGE_BUCKET",
-  messagingSenderId: "REPLACE_MESSAGING_SENDER_ID",
-  appId: "REPLACE_APP_ID"
+  apiKey: "AIzaSyBFTGizXznAxNpixRIyDJGx9e4-uUpMchE",
+  authDomain: "week7-gxchen.firebaseapp.com",
+  projectId: "week7-gxchen",
+  storageBucket: "week7-gxchen.firebasestorage.app",
+  messagingSenderId: "500519066233",
+  appId: "1:500519066233:web:50c31625ea072930b152a8"
 }
 
 initializeApp(firebaseConfig)
