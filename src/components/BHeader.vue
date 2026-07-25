@@ -25,6 +25,10 @@ const onLogout = () => {
           <router-link to="/login" class="nav-link">Login</router-link>
         </li>
 
+        <li class="nav-item">
+          <router-link to="/FireLogin" class="nav-link" active-class="active">Firebase Login</router-link>
+        </li>
+
         <li v-else class="nav-item d-flex align-items-center ms-2">
           <span class="navbar-text me-2">{{ currentUser }}</span>
           <button type="button" class="btn btn-sm btn-outline-danger" @click="onLogout">
