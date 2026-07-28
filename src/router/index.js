@@ -11,6 +11,8 @@ import ManageView from '../views/ManageView.vue'
 import GetBookCountView from '../views/GetBookCountView.vue'
 import GetBooksView from '../views/GetBooksView.vue'
 import WeatherView from '../views/WeatherView.vue'
+import CountBookAPI from '../views/CountBookAPI.vue'
+import GetAllBookAPI from '../views/GetAllBookAPI.vue'
 import { isAuthenticated } from '../auth.js'
 
 const routes = [
@@ -25,7 +27,9 @@ const routes = [
   { path: '/manage',       name: 'Manage',       component: ManageView },
   { path: '/GetBookCount', name: 'GetBookCount', component: GetBookCountView },
   { path: '/GetBooks',     name: 'GetBooks',     component: GetBooksView },
-  { path: '/GetWeather',   name: 'weatherCheck', component: WeatherView }
+  { path: '/GetWeather',   name: 'weatherCheck', component: WeatherView },
+  { path: '/CountBookAPI', name: 'CountBookAPI', component: CountBookAPI },
+  { path: '/GetAllBookAPI',name: 'GetAllBookAPI',component: GetAllBookAPI }
 ]
 
 const router = createRouter({
