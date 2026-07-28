@@ -46,6 +46,12 @@ const onLogout = () => {
         <li class="nav-item">
           <router-link to="/manage" class="nav-link" active-class="active">Manage Books</router-link>
         </li>
+        <li class="nav-item">
+          <router-link to="/GetBookCount" class="nav-link" active-class="active">Get Book Count</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/GetBooks" class="nav-link" active-class="active">Book Showcase</router-link>
+        </li>
       </ul>
     </header>
   </div>
