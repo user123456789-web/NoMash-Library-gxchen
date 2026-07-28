@@ -10,6 +10,7 @@ import AddBookView from '../views/AddBookView.vue'
 import ManageView from '../views/ManageView.vue'
 import GetBookCountView from '../views/GetBookCountView.vue'
 import GetBooksView from '../views/GetBooksView.vue'
+import WeatherView from '../views/WeatherView.vue'
 import { isAuthenticated } from '../auth.js'
 
 const routes = [
@@ -23,7 +24,8 @@ const routes = [
   { path: '/addbook',      name: 'AddBook',      component: AddBookView },
   { path: '/manage',       name: 'Manage',       component: ManageView },
   { path: '/GetBookCount', name: 'GetBookCount', component: GetBookCountView },
-  { path: '/GetBooks',     name: 'GetBooks',     component: GetBooksView }
+  { path: '/GetBooks',     name: 'GetBooks',     component: GetBooksView },
+  { path: '/GetWeather',   name: 'weatherCheck', component: WeatherView }
 ]
 
 const router = createRouter({
