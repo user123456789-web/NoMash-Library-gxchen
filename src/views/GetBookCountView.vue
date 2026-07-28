@@ -20,7 +20,7 @@ export default {
   methods: {
     async getBookCount() {
       try {
-        const response = await axios.get('https://countbooks-bhnqakklka-uc.a.run.app');
+        const response = await axios.get('https://countbooks-cewdesqloc.cn-hangzhou.fcapp.run');
         this.count = response.data.count;
         this.error = null;
       } catch (error) {

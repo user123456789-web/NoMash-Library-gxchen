@@ -30,7 +30,7 @@ export default {
   methods: {
     async fetchBooks() {
       try {
-        const response = await axios.get('https://us-central1-week7-gxchen.cloudfunctions.net/getBooks');
+        const response = await axios.get('/emulator/week7-gxchen/us-central1/getBooks');
         this.books = response.data.books;
         this.error = null;
       } catch (error) {
