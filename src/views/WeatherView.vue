@@ -15,6 +15,7 @@
     </div>
 
     <main class="text-center">
+      <div v-if="errorMsg" class="alert alert-danger">{{ errorMsg }}</div>
       <div v-if="weatherData">
         <h2>{{ weatherData.name }}, {{ weatherData.sys.country }}</h2>
         <div>
@@ -23,7 +24,7 @@
         </div>
         <span>{{ weatherData.weather[0].description }}</span>
       </div>
-      <div v-else>
+      <div v-else-if="!errorMsg">
         <p>Loading weather for your location...</p>
       </div>
     </main>
@@ -33,7 +34,7 @@
 <script>
 import axios from "axios";
 
-const apikey = "PLACEHOLDER_API_KEY";
+const apikey = import.meta.env.VITE_WEATHER_KEY;
 
 export default {
   name: "App",
@@ -41,6 +42,7 @@ export default {
     return {
       city: "",
       weatherData: null,
+      errorMsg: null,
     };
   },
   computed: {
@@ -74,10 +76,12 @@ export default {
       await this.fetchWeatherData(url);
     },
     async fetchWeatherData(url) {
+      this.errorMsg = null;
       try {
         const response = await axios.get(url);
         this.weatherData = response.data;
       } catch (error) {
+        this.errorMsg = error.response?.data?.message || "Failed to fetch weather data.";
         console.error("Error fetching weather data:", error);
       }
     },
